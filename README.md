@@ -11,15 +11,6 @@ This project turns that subjective question into a compact data analysis case st
 - 2 ranking methods compared side by side
 - 3 unsupervised views of team similarity: K-means, hierarchical clustering, and MDS
 
-## Why This Project Works In A Portfolio
-
-This repository is not just a football notebook. It shows how to:
-
-- turn a vague question into a measurable analytical problem,
-- build a small but reproducible ranking pipeline,
-- compare conclusions across two synthetic measures,
-- support the ranking with clustering and 2D projection.
-
 ## Key Questions
 
 - Which team ranks highest when "attractive football" is defined through the selected indicators?
@@ -28,9 +19,9 @@ This repository is not just a football notebook. It shows how to:
 
 ## Main Findings
 
-- Chelsea finishes first in both ranking methods after the refreshed workflow.
+- Chelsea finishes first in both ranking methods.
 - The two rankings are highly consistent, with Spearman rank correlation of 0.938.
-- Tottenham Hotspur, Arsenal, Manchester United, Liverpool, and Manchester City stay near the top, even when the exact ordering changes.
+- Tottenham Hotspur, Arsenal, Manchester United, Liverpool, and Manchester City stay near the top, even if the exact order changes.
 - Standardized clustering separates the traditional Big 6 from the rest of the league.
 
 ## Visual Summary
@@ -69,7 +60,18 @@ Final variables used in ranking and clustering:
 - Draws (`D`)
 - Backward passes per touch (`BPPT`)
 
-Red cards were kept in the exploratory stage, then removed from the final synthetic measures to keep the model simpler and easier to interpret.
+Red cards were kept in the exploratory stage and then removed from the final synthetic measures to keep the model simpler and easier to interpret.
+
+## Short Method Background
+
+The project uses a small set of standard statistical ideas:
+
+- standardization, so variables measured on different scales can be compared fairly,
+- a synthetic measure, so several features can be combined into one ranking,
+- rank correlation, to check whether two ranking methods lead to a similar ordering,
+- clustering, to see whether teams form natural groups rather than just a single league table.
+
+The idea is simple: first build a ranking, then check whether it stays similar across methods, and finally look at whether the teams form broader groups.
 
 ## Methods
 
@@ -80,7 +82,7 @@ The notebook includes:
 - standardization with `StandardScaler`,
 - Hellwig linear ordering method,
 - standardized sums method,
-- rank comparison using Spearman correlation,
+- rank comparison with Spearman correlation,
 - K-means clustering,
 - hierarchical clustering with Ward linkage,
 - MDS projection for visualization.
@@ -107,13 +109,6 @@ pip install -r requirements.txt
 ## Methodological Notes
 
 - This is an exploratory project, not a claim about objective football quality.
-- "Attractiveness" depends on the chosen features and their interpretation.
-- Distance-based methods in the notebook are applied to standardized data.
-- The ranking is intentionally lightweight and interpretable rather than optimized for prediction.
-
-## Possible Next Extensions
-
-- add a short sensitivity analysis for feature choice,
-- compare more seasons instead of a single campaign,
-- turn the notebook into a small Streamlit or Dash app,
-- export a polished HTML report alongside the notebook.
+- "Attractiveness" depends on the chosen features and how they are interpreted.
+- Distance-based methods are applied to standardized data.
+- The ranking is intentionally simple and interpretable rather than optimized for prediction.
